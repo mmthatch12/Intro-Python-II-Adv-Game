@@ -21,6 +21,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+compass = ['n', 's', 'e', 'w']
+
+while True:
+    cmd = imput("adv_game>")
+
 
 # Link rooms together
 
