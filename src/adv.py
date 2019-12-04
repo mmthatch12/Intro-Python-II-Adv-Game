@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -21,14 +22,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-compass = ['n', 's', 'e', 'w']
-
-while True:
-    cmd = imput("adv_game>")
-
-
 # Link rooms together
-
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -38,12 +32,10 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
+compass = ['n', 's', 'e', 'w']
 
 # Make a new player object that is currently in the 'outside' room.
-
+player1 = Player('Gilderoy', 'outside')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -54,3 +46,23 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# I didn't see that we were supposed to instantiate the player outside the loop so I created this first
+# player_name_in = input("player_name>")
+
+# print("Welcome to Matt's Adventure Game \n Please create your player by entering a name")
+
+# if player_name_in:
+#     compass_in = input("directions>")
+#     player1 = Player(f"{player_name_in}")
+#     print(f"Welcome {player1.name}")
+#     if player1.current_room == 'outside':
+#         print()
+while True:
+    compass_in = input("directions>")
+
+    print(f"Welcome brave {player1.name}, to Matt's Adventure Game\n to progress enter the direction you would like to go")
+    for place in room:
+        if place == player1.current_room:
+            print(f"")
+
