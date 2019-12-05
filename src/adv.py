@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -34,6 +35,13 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player1 = Player('Gilderoy', room['outside'])
+sword = Item("Anduril", "The Flaming Sword of the West!")
+stick = Item("Stick", "Just a stick. Nothing special.")
+mirror = Item("Mirror", "Don't look into it!")
+room['foyer'].item_list.append(stick)
+room['overlook'].item_list.append(sword)
+room['treasure'].item_list.append(mirror)
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -62,6 +70,7 @@ while not turn_off:
 
     print(f"{player1.current_room.name}")
     print(f"{player1.current_room.description}")
+    print(f"Room contents: {player1.current_room.item_list}")
 
     compass_in = input("directions>")
     # print(f"Welcome brave {player1.name}, to Matt's Adventure Game\n to progress enter the direction you would like to go")
