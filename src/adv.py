@@ -35,12 +35,14 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player1 = Player('Gilderoy', room['outside'])
-sword = Item("Anduril", "The Flaming Sword of the West!")
-stick = Item("Stick", "Just a stick. Nothing special.")
-mirror = Item("Mirror", "Don't look into it!")
+sword = Item("sword", "The Flaming Sword of the West!")
+stick = Item("stick", "Just a stick. Nothing special.")
+mirror = Item("mirror", "Don't look into it!")
+food = Item("food", "Lembas bread, One small bite...")
 room['foyer'].item_list.append(stick)
 room['overlook'].item_list.append(sword)
 room['treasure'].item_list.append(mirror)
+player1.inventory.append(food)
 
 # Write a loop that:
 #
@@ -71,42 +73,51 @@ while not turn_off:
     print(f"{player1.current_room.name}")
     print(f"{player1.current_room.description}")
     print(f"Room contents: {player1.current_room.item_list}")
+    print(f"{player1.name}'s inventory: {player1.inventory}")
 
     compass_in = input("directions>")
     # print(f"Welcome brave {player1.name}, to Matt's Adventure Game\n to progress enter the direction you would like to go")
-    if compass_in == 'n':  
-        if player1.current_room.n_to == None:
-            print("You can't go that way! Try again!")
-            player1.current_room
-        else:
-            player1.current_room = player1.current_room.n_to
-    elif compass_in == 's':
-        if player1.current_room.s_to == None:
-            print("You can't go that way! Try again!")
-            player1.current_room
-        else:
-            player1.current_room = player1.current_room.s_to
-    elif compass_in == 'e':
-        if player1.current_room.e_to == None:
-            print("You can't go that way! Try again!")
-            player1.current_room
-        else:
-            player1.current_room = player1.current_room.e_to
-    elif compass_in == 'w':
-        if player1.current_room.w_to == None:
-            print("You can't go that way! Try again!")
-            player1.current_room
-        else:
-            player1.current_room = player1.current_room.w_to
-
-        # if player1.current_room = room[""]
-    elif compass_in == 'q':
-        print("Game Over!")
-        turn_off = True
     
+    spl_compass_in = compass_in.split(' ')
 
-
-        
-
-
-
+    if len(spl_compass_in) == 1:
+        if compass_in == 'n':  
+            if player1.current_room.n_to == None:
+                print("You can't go that way! Try again!")
+                player1.current_room
+            else:
+                player1.current_room = player1.current_room.n_to
+        elif compass_in == 's':
+            if player1.current_room.s_to == None:
+                print("You can't go that way! Try again!")
+                player1.current_room
+            else:
+                player1.current_room = player1.current_room.s_to
+        elif compass_in == 'e':
+            if player1.current_room.e_to == None:
+                print("You can't go that way! Try again!")
+                player1.current_room
+            else:
+                player1.current_room = player1.current_room.e_to
+        elif compass_in == 'w':
+            if player1.current_room.w_to == None:
+                print("You can't go that way! Try again!")
+                player1.current_room
+            else:
+                player1.current_room = player1.current_room.w_to
+        elif compass_in == 'q':
+            print("Game Over!")
+            turn_off = True
+    elif len(spl_compass_in) == 2:
+        if spl_compass_in[0] == 'get' or 'take':
+            print (f"checking room item list, {player1.current_room.item_list}")
+            for x in player1.current_room.item_list:
+                if x.name == spl_compass_in[1]:
+                    player1.current_room.item_list.remove(x)
+                    player1.inventory.append(x)
+                else:
+                    print(f"There is no {spl_compass_in[1]} in this room.")
+    else:
+        print("You must choose to enter a direction or get/take an item")
+                
+            
