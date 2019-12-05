@@ -110,13 +110,19 @@ while not turn_off:
             turn_off = True
     elif len(spl_compass_in) == 2:
         if spl_compass_in[0] == 'get' or 'take':
-            print (f"checking room item list, {player1.current_room.item_list}")
             for x in player1.current_room.item_list:
                 if x.name == spl_compass_in[1]:
                     player1.current_room.item_list.remove(x)
                     player1.inventory.append(x)
                 else:
                     print(f"There is no {spl_compass_in[1]} in this room.")
+        if spl_compass_in[0] == 'drop':
+            for y in player1.inventory:
+                if y.name == spl_compass_in[1]:
+                    player1.inventory.remove(y)
+                    player1.current_room.item_list.append(y)
+                else:
+                    print(f"You don't have {spl_compass_in[1]} in your satchel.")
     else:
         print("You must choose to enter a direction or get/take an item")
                 
