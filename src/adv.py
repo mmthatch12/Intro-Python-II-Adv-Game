@@ -5,7 +5,7 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+"North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -32,10 +32,8 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-compass = ['n', 's', 'e', 'w']
-
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player('Gilderoy', 'outside')
+player1 = Player('Gilderoy', room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -58,11 +56,48 @@ player1 = Player('Gilderoy', 'outside')
 #     print(f"Welcome {player1.name}")
 #     if player1.current_room == 'outside':
 #         print()
-while True:
-    compass_in = input("directions>")
+turn_off = False
 
-    print(f"Welcome brave {player1.name}, to Matt's Adventure Game\n to progress enter the direction you would like to go")
-    for place in room:
-        if place == player1.current_room:
-            print(f"")
+while not turn_off:
+
+    print(f"{player1.current_room.name}")
+    print(f"{player1.current_room.description}")
+
+    compass_in = input("directions>")
+    # print(f"Welcome brave {player1.name}, to Matt's Adventure Game\n to progress enter the direction you would like to go")
+    if compass_in == 'n':  
+        if player1.current_room.n_to == None:
+            print("You can't go that way! Try again!")
+            player1.current_room
+        else:
+            player1.current_room = player1.current_room.n_to
+    elif compass_in == 's':
+        if player1.current_room.s_to == None:
+            print("You can't go that way! Try again!")
+            player1.current_room
+        else:
+            player1.current_room = player1.current_room.s_to
+    elif compass_in == 'e':
+        if player1.current_room.e_to == None:
+            print("You can't go that way! Try again!")
+            player1.current_room
+        else:
+            player1.current_room = player1.current_room.e_to
+    elif compass_in == 'w':
+        if player1.current_room.w_to == None:
+            print("You can't go that way! Try again!")
+            player1.current_room
+        else:
+            player1.current_room = player1.current_room.w_to
+
+        # if player1.current_room = room[""]
+    elif compass_in == 'q':
+        print("Game Over!")
+        turn_off = True
+    
+
+
+        
+
+
 
