@@ -1,7 +1,6 @@
 from room import Room
 from player import Player
 from item import Item
-
 # Declare all the rooms
 
 room = {
@@ -114,6 +113,7 @@ while not turn_off:
                 if x.name == spl_compass_in[1]:
                     player1.current_room.item_list.remove(x)
                     player1.inventory.append(x)
+                    x.on_take()
                 else:
                     print(f"There is no {spl_compass_in[1]} in this room.")
         if spl_compass_in[0] == 'drop':
@@ -121,6 +121,7 @@ while not turn_off:
                 if y.name == spl_compass_in[1]:
                     player1.inventory.remove(y)
                     player1.current_room.item_list.append(y)
+                    y.on_drop()
                 else:
                     print(f"You don't have {spl_compass_in[1]} in your satchel.")
     else:
