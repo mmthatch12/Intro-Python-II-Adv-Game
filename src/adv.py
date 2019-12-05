@@ -72,7 +72,6 @@ while not turn_off:
     print(f"{player1.current_room.name}")
     print(f"{player1.current_room.description}")
     print(f"Room contents: {player1.current_room.item_list}")
-    print(f"{player1.name}'s inventory: {player1.inventory}")
 
     compass_in = input("directions>")
     # print(f"Welcome brave {player1.name}, to Matt's Adventure Game\n to progress enter the direction you would like to go")
@@ -104,6 +103,8 @@ while not turn_off:
                 player1.current_room
             else:
                 player1.current_room = player1.current_room.w_to
+        elif compass_in == 'i' or 'inventory':
+            print(player1.inventory)
         elif compass_in == 'q':
             print("Game Over!")
             turn_off = True
