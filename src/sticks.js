@@ -1,22 +1,18 @@
 function cutTheSticks(arr) {
-    let booly = true
-    while(booly){
-      let finarr = []
-      let copy = [...arr]
-      let mini = Math.min(...copy)
-      finarr.push(copy.length)
-      if(copy.length >= 0){
+    let finarr = []
+    let copy = [...arr]
+    let mini = Math.min(...copy)
+    for(let i = 0;i<arr.length;i++){
+      if(copy.length >= 1){
+        finarr.push(copy.length)
         copy = copy.map(num => num-mini)
-        console.log(copy, mini)
-        copy = copy.filter(num => num !== 0)
+        copy = copy.filter(num => num != 0)
         mini = Math.min(...copy)
       } else {
-        return finarr
-        booly = false
+        break
       }
       
     }
-  
-  
+    return finarr
   }
-  console.log(cutTheSticks([5,4,4,2,2,8]))
+  console.log(cutTheSticks([1,2,3,4,3,3,2,1]))
