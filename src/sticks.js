@@ -16,3 +16,19 @@ function cutTheSticks(arr) {
     return finarr
   }
   console.log(cutTheSticks([1,2,3,4,3,3,2,1]))
+
+
+  function findDigits(n) {
+    let county = 0
+    let splity = n.toString().split('')
+    let mapy = splity.map(num => parseInt(num))
+    for(let i = 0; i<mapy.length;i++){
+      if(n%mapy[i] === 0){
+        county++
+      }
+    }
+    return county
+  
+  }
+  console.log(findDigits(1012))
+  
